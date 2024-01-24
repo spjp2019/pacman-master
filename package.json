@@ -1,0 +1,27 @@
+{
+  "name": "pacman",
+  "version": "0.0.1",
+  "description": "Pac-Man Node.js Game",
+  "author": "Ivan Font <ivan@ivanfont.com>",
+  "main": "bin/server.js",
+  "scripts": {
+    "start": "node -r @splunk/otel/instrument .",
+    "start:mdb": "node -r ./tracing.js .",
+    "dev": "nodemon ."
+  },
+  "license": "GPLv3",
+  "dependencies": {
+    "@opentelemetry/api": "^1.4.1",
+    "@opentelemetry/instrumentation-express": "^0.32.1",
+    "@opentelemetry/instrumentation-http": "^0.36.1",
+    "@opentelemetry/instrumentation-mongodb": "^0.34.1",
+    "@splunk/otel": "^2.1.0",
+    "body-parser": "^1.17.1",
+    "express": "^4.14.1",
+    "jade": "^1.11.0",
+    "mongodb": "^2.2.24"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
