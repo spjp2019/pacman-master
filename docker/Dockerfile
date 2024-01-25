@@ -1,4 +1,4 @@
-FROM node:boron
+FROM node:erbium
 
 MAINTAINER Ivan Font <ifont@redhat.com>
 
