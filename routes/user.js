@@ -7,10 +7,7 @@ var Database = require('../lib/database');
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-const span = tracer2.startSpan('jplatt.module.load', {
-    attributes: {'workflow.name': 'jplatt.module.load'
-    }
-};
+
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
@@ -48,6 +45,11 @@ router.get('/id', function(req, res, next) {
 });
 
 router.post('/stats', urlencodedParser, function(req, res, next) {
+
+const span = tracer2.startSpan('jplatt.module.userstats', {
+    attributes: {'workflow.name': 'jplatt.module.userstats'
+    }
+};
     console.log('[POST /user/stats]\n',
                 ' body =', req.body, '\n',
                 ' host =', req.headers.host,
@@ -103,9 +105,15 @@ router.post('/stats', urlencodedParser, function(req, res, next) {
                 });
         });
     });
+span.end();
 });
 
 router.get('/stats', function(req, res, next) {
+const span = tracer2.startSpan('jplatt.module.getuserstats', {
+    attributes: {'workflow.name': 'jplatt.module.getuserstats'
+    }
+};
+
     console.log('[GET /user/stats]');
 
     Database.getDb(req.app, function(err, db) {
@@ -138,6 +146,7 @@ router.get('/stats', function(req, res, next) {
             res.json(result);
         });
     });
+span.end();
 });
 
 
