@@ -49,7 +49,7 @@ router.post('/stats', urlencodedParser, function(req, res, next) {
 const span = tracer2.startSpan('jplatt.module.userstats', {
     attributes: {'workflow.name': 'jplatt.module.userstats'
     }
-};
+});
     console.log('[POST /user/stats]\n',
                 ' body =', req.body, '\n',
                 ' host =', req.headers.host,
@@ -112,7 +112,7 @@ router.get('/stats', function(req, res, next) {
 const span = tracer2.startSpan('jplatt.module.getuserstats', {
     attributes: {'workflow.name': 'jplatt.module.getuserstats'
     }
-};
+});
 
     console.log('[GET /user/stats]');
 
