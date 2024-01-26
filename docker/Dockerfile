@@ -7,7 +7,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Clone game source code
-RUN git clone https://github.com/spjp2019/pacman.git .
+RUN git clone https://github.com/spjp2019/pacman-master.git .
 
 # Install app dependencies
 RUN npm install
