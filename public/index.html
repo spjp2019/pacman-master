@@ -43,6 +43,18 @@
     <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
     <script src="js/jquery.hammer.min.js" type="text/javascript"></script>
 
+    <script src="https://cdn.signalfx.com/o11y-gdi-rum/v0.16.5/splunk-otel-web.js" integrity="sha384-zd5QhD1H5BOwLjGzeHqnEpZRkpWp1TwNbJyEedzArs+6Tq/JejIutyQ3rTndqygI" crossorigin="anonymous"></script>
+    <script>
+       SplunkRum.init({
+          realm: 'eu0',
+          rumAccessToken: 'EDIbCJR4LlxWdXMLjkYX1g',
+          applicationName: 'pacman',
+          version: '1',
+          deploymentEnvironment: 'jplatt'
+       });
+    </script>
+
+
 </head>
 
 <body>
