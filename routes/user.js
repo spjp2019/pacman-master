@@ -46,10 +46,9 @@ router.get('/id', function(req, res, next) {
 
 router.post('/stats', urlencodedParser, function(req, res, next) {
 
-const span = tracer2.startSpan('jplatt.module.userstats', {
-    attributes: {'workflow.name': 'jplatt.module.userstats'
-    }
-});
+    const span = SplunkRum.provider.getTracer('scores').startSpan('calculateScore'');
+    
+    
     console.log('[POST /user/stats]\n',
                 ' body =', req.body, '\n',
                 ' host =', req.headers.host,
@@ -60,6 +59,9 @@ const span = tracer2.startSpan('jplatt.module.userstats', {
         userLevel = parseInt(req.body.level, 10),
         userLives = parseInt(req.body.lives, 10),
         userET = parseInt(req.body.elapsedTime, 10);
+    span.setAttribute('ScoreOver20', userScore > 20);
+    span.end();
+
 
     Database.getDb(req.app, function(err, db) {
         if (err) {
@@ -105,14 +107,11 @@ const span = tracer2.startSpan('jplatt.module.userstats', {
                 });
         });
     });
-span.end();
+
 });
 
 router.get('/stats', function(req, res, next) {
-const span = tracer2.startSpan('jplatt.module.getuserstats', {
-    attributes: {'workflow.name': 'jplatt.module.getuserstats'
-    }
-});
+
 
     console.log('[GET /user/stats]');
 
@@ -146,7 +145,7 @@ const span = tracer2.startSpan('jplatt.module.getuserstats', {
             res.json(result);
         });
     });
-span.end();
+
 });
 
 
