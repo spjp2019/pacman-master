@@ -7,6 +7,10 @@ var Database = require('../lib/database');
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+const span = tracer2.startSpan('jplatt.module.load', {
+    attributes: {'workflow.name': 'jplatt.module.load'
+    }
+};
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
