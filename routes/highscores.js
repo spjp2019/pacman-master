@@ -17,8 +17,15 @@ router.use(function timeLog (req, res, next) {
 
 router.get('/list', urlencodedParser, function(req, res, next) {
     console.log('[GET /highscores/list]');
-
+const span = tracer2.startSpan('HighScores', {
+            attributes: {
+                'workflow.name': 'HighScores',
+                'userID': 'jonny'
+            }
+    });
     console.log('FIND_ME!');
+span.end();
+
     const span = tracer.startSpan('/list_custom', { 'kind':opentelemetry.SpanKind.SERVER })
     span.setAttribute('endpoint',"get_list");
 
