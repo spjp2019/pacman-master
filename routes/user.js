@@ -46,15 +46,15 @@ router.get('/id', function(req, res, next) {
 
 router.post('/stats', urlencodedParser, function(req, res, next) {
 
-    span = tracer2.startSpan('AddScores', {
-            attributes: {
-                'workflow.name': 'AddScores',
-                'userID': 'jonny'
-            }
-    });
+//    span = tracer2.startSpan('AddScores', {
+    //          attributes: {
+//                'workflow.name': 'AddScores',
+//                'userID': 'jonny'
+//            }
+//    });
 
     console.log('Found Stats!');
-    
+ //   span.end();
     console.log('[POST /user/stats]\n',
                 ' body =', req.body, '\n',
                 ' host =', req.headers.host,
@@ -65,9 +65,6 @@ router.post('/stats', urlencodedParser, function(req, res, next) {
         userLevel = parseInt(req.body.level, 10),
         userLives = parseInt(req.body.lives, 10),
         userET = parseInt(req.body.elapsedTime, 10);
-//    span.setAttribute('ScoreOver20', userScore > 20);
-    span.end();
-
 
     Database.getDb(req.app, function(err, db) {
         if (err) {
@@ -118,14 +115,14 @@ router.post('/stats', urlencodedParser, function(req, res, next) {
 
 router.get('/stats', function(req, res, next) {
 
-span = tracer2.startSpan('FetchScores', {
-            attributes: {
-                'workflow.name': 'FetchScores',
-                'userID': 'jonny'
-            }
-    });
+//span = tracer2.startSpan('FetchScores', {
+//            attributes: {
+//                'workflow.name': 'FetchScores',
+//                'userID': 'jonny'
+//            }
+//    });
     console.log('[GET /user/stats]');
-span.end();
+//span.end();
     Database.getDb(req.app, function(err, db) {
         if (err) {
             return next(err);
