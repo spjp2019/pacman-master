@@ -7,7 +7,8 @@ var Database = require('../lib/database');
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
-
+const opentelemetry = require('@opentelemetry/api');
+const tracer = opentelemetry.trace.getTracer('jplatt-rum');
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
@@ -115,14 +116,14 @@ router.post('/stats', urlencodedParser, function(req, res, next) {
 
 router.get('/stats', function(req, res, next) {
 
-//span = tracer2.startSpan('FetchScores', {
-//            attributes: {
-//                'workflow.name': 'FetchScores',
-//                'userID': 'jonny'
-//            }
-//    });
+const span = tracer.startSpan('FetchScores', {
+            attributes: {
+                'workflow.name': 'FetchScores',
+                'userID': 'jonny'
+            }
+    });
     console.log('[GET /user/stats]');
-//span.end();
+span.end();
     Database.getDb(req.app, function(err, db) {
         if (err) {
             return next(err);
