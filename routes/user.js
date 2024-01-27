@@ -46,7 +46,13 @@ router.get('/id', function(req, res, next) {
 
 router.post('/stats', urlencodedParser, function(req, res, next) {
 
-    const span = SplunkRum.provider.getTracer('scores').startSpan('calculateScore'');
+    const span = tracer2.startSpan('AddScores', {
+            attributes: {
+                'workflow.name': 'AddScores',
+                'userID': 'jonny'
+            }
+    });
+
     
     
     console.log('[POST /user/stats]\n',
@@ -112,7 +118,12 @@ router.post('/stats', urlencodedParser, function(req, res, next) {
 
 router.get('/stats', function(req, res, next) {
 
-
+const span = tracer2.startSpan('FetchScores', {
+            attributes: {
+                'workflow.name': 'FetchScores',
+                'userID': 'jonny'
+            }
+    });
     console.log('[GET /user/stats]');
 
     Database.getDb(req.app, function(err, db) {
