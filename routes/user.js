@@ -65,7 +65,7 @@ router.post('/stats', urlencodedParser, function(req, res, next) {
         userLevel = parseInt(req.body.level, 10),
         userLives = parseInt(req.body.lives, 10),
         userET = parseInt(req.body.elapsedTime, 10);
-    span.setAttribute('ScoreOver20', userScore > 20);
+//    span.setAttribute('ScoreOver20', userScore > 20);
     span.end();
 
 
@@ -125,7 +125,7 @@ const span = tracer2.startSpan('FetchScores', {
             }
     });
     console.log('[GET /user/stats]');
-
+span.end();
     Database.getDb(req.app, function(err, db) {
         if (err) {
             return next(err);
