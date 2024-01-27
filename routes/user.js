@@ -53,7 +53,7 @@ router.post('/stats', urlencodedParser, function(req, res, next) {
             }
     });
 
-    
+    console.log('Found Stats!');
     
     console.log('[POST /user/stats]\n',
                 ' body =', req.body, '\n',
