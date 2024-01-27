@@ -46,7 +46,7 @@ router.get('/id', function(req, res, next) {
 
 router.post('/stats', urlencodedParser, function(req, res, next) {
 
-    const span = tracer2.startSpan('AddScores', {
+    span = tracer2.startSpan('AddScores', {
             attributes: {
                 'workflow.name': 'AddScores',
                 'userID': 'jonny'
@@ -118,7 +118,7 @@ router.post('/stats', urlencodedParser, function(req, res, next) {
 
 router.get('/stats', function(req, res, next) {
 
-const span = tracer2.startSpan('FetchScores', {
+span = tracer2.startSpan('FetchScores', {
             attributes: {
                 'workflow.name': 'FetchScores',
                 'userID': 'jonny'
