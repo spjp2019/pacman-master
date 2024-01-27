@@ -7,7 +7,7 @@ var assert = require('assert');
 
 // Constants
 const opentelemetry = require('@opentelemetry/api');
-const tracer = opentelemetry.trace.getTracer('srauhala-apm');
+const tracer = opentelemetry.trace.getTracer('jplatt-apm');
 
 // Routes
 var highscores = require('./routes/highscores');
