@@ -18,7 +18,7 @@ router.use(function timeLog (req, res, next) {
 
 router.get('/list', urlencodedParser, function(req, res, next) {
     console.log('[GET /highscores/list]');
-span = tracer.startSpan('HighScores', {
+    const span = tracer.startSpan('HighScores', {
             attributes: {
                 'workflow.name': 'HighScores',
                 'userID': 'jonny'
