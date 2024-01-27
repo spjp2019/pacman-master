@@ -5,7 +5,7 @@ var Database = require('../lib/database');
 
 const opentelemetry = require('@opentelemetry/api');
 const tracer = opentelemetry.trace.getTracer('jplatt-apm');
-const tracerRum = opentelemetry.trace.getTracer('jplatt-rum);
+const tracerRum = opentelemetry.trace.getTracer('jplatt-rum');
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
