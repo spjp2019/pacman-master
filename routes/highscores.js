@@ -58,7 +58,7 @@ span.end();
     }, span);
     span.setStatus({ 'code':opentelemetry.SpanStatusCode.OK, 'message':'success' });
     span.end();
-});
+
 
 // Accessed at /highscores
 router.post('/', urlencodedParser, function(req, res, next) {
@@ -67,7 +67,7 @@ router.post('/', urlencodedParser, function(req, res, next) {
                 ' user-agent =', req.headers['user-agent'],
                 ' referer =', req.headers.referer);
     var payload = 'Event: '.concat(JSON.stringify(req.body), ' ', req.headers.host, ' ',  req.headers['user-agent'], ' ', req.headers.referer)
-    const span = tracer.startSpan('/highscores_custom', { 'kind':opentelemetry.SpanKind.SERVER })
+    span = tracer.startSpan('/highscores_custom', { 'kind':opentelemetry.SpanKind.SERVER })
     span.setAttribute('endpoint',"post_highscore");
     span.addEvent(payload);
     var userScore = parseInt(req.body.score, 10),
