@@ -5,6 +5,7 @@ var Database = require('../lib/database');
 
 const opentelemetry = require('@opentelemetry/api');
 const tracer = opentelemetry.trace.getTracer('jplatt-apm');
+const tracerRum = opentelemetry.trace.getTracer('jplatt-rum);
 
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
@@ -17,14 +18,14 @@ router.use(function timeLog (req, res, next) {
 
 router.get('/list', urlencodedParser, function(req, res, next) {
     console.log('[GET /highscores/list]');
-//span2 = tracer2.startSpan('HighScores', {
-//            attributes: {
-//                'workflow.name': 'HighScores',
-//                'userID': 'jonny'
-//            }
-//    });
+span = tracerRum.startSpan('HighScores', {
+            attributes: {
+                'workflow.name': 'HighScores',
+                'userID': 'jonny'
+            }
+    });
     console.log('FIND_ME!');
-//span2.end();
+span.end();
 
     const span = tracer.startSpan('/list_custom', { 'kind':opentelemetry.SpanKind.SERVER })
     span.setAttribute('endpoint',"get_list");
