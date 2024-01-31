@@ -56,7 +56,13 @@
 
     <script>
         const Provider=SplunkRum.provider;
-        var tracer2=Provider.getTracer('appModuleLoader');
+        var tracer=Provider.getTracer('appModuleLoader');
+        var span = tracer.startSpan('PlayGame', {
+            attributes { 'workflow.name" : 'playGame',
+                         'userID': 'Platty'
+        }
+        });
+    span.end();
     </script>
 
 </head>
