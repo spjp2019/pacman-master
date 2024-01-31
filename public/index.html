@@ -82,7 +82,15 @@
 <!-- Highscore -->
 <div class="content" id="highscore-content">
     <div class="button" id="back">&lt; back</div>
-    <div>
+<script>
+        
+        var span = tracer.startSpan('highScore', {
+            attributes: { 'workflow.name' : 'highScore',
+                         'userID': 'Platty'
+        }
+        });
+    span.end();
+    </script>    <div>
         <h1>High score</h1>
         <p>
             <table id="highscore-table">
