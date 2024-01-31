@@ -86,6 +86,8 @@
         
         var span = tracer.startSpan('highScore', {
             attributes: { 'workflow.name' : 'highScore',
+                         'error': true,
+                         'error.message': 'Custom highscore error',
                          'userID': 'Platty'
         }
         });
